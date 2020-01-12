@@ -1,0 +1,12 @@
+<div class="allignCenter">
+    <div *ngIf="result.status == 'success'">
+        <h5>Success! The Army was able to find Queen Al Falcone. King Shan is mighty pleased.</h5>
+        <h5>Queen Al Falcone Was Found On Planet {{result.planet}}</h5>
+        <h5>It took {{result.totalTimeTaken}} hours for the Army to find The Queen</h5>
+    </div>
+
+    <div *ngIf="result.status == 'false'">
+        <h5>The Army Failed to find Queen Al Falcone in the selected planets</h5>
+        <h5>Please Retry</h5>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div *ngFor="let vehicle of unselectedVehicles; index as idx">
+  <label for="{{vehicle.id}}{{destId}}">
+    <input
+      name="{{vehicle.id}}{{destId}}"
+      type="radio"
+      id="{{vehicle.id}}{{destId}}"
+      [value]="vehicle.id"
+      [(ngModel)]="selectedVehicle.id"
+      (ngModelChange)="onSelectingVehicle($event)"
+      [disabled]="isVehicleDisabled(idx)"
+    />
+  {{vehicle.name}} ({{vehicle.totalNumber}})</label>
+</div>

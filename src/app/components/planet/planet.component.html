@@ -1,0 +1,329 @@
+<label for="Destination{{destId}}">Desstination {{destId+1}} :</label>
+<br>
+<select class="planetSelect" [(ngModel)]="selectedPlanet.id" (ngModelChange)="onSelectingPlanet($event)">
+  <option class="selectOption" *ngIf="selectedPlanet.id == -1" selected disabled [ngValue]="selectedPlanet.id" hidden>Select Planet</option>
+  <option class="selectOption"*ngIf="selectedPlanet.id !== -1" selected [ngValue]="selectedPlanet.id" hidden>{{selectedPlanet.name}}</option>
+  <option class="selectOption"*ngFor="let planet of unselectedPlanets" [ngValue]="planet.id">{{planet.name}}</option>
+</select>
+<!-- <div class="allignCenter">
+  <span *ngIf="planets.length !== 0">
+    <div class="planetGroup">
+      <label class="label" for="Destination">Destination 1:</label>
+      <select class="planetSelect"  [(ngModel)]="finalDestinations[0].id" (ngModelChange)="onPlanetSelect($event, 0)">
+        <option *ngIf="finalDestinations[0].distance == -1" selected disabled [ngValue]="finalDestinations[0].id" hidden>{{finalDestinations[0].name}}</option>
+        <option *ngIf="finalDestinations[0].distance !== -1" selected [ngValue]="finalDestinations[0].id">{{finalDestinations[0].name}}</option>
+        <option *ngFor="let planet of remainingPlanets" [ngValue]="planet.id">{{planet.name}}</option>
+      </select>
+    </div>
+    <div class="planetGroup">
+      <label class="label" for="Destination">Destination 2:</label>
+      <select class="planetSelect"  [(ngModel)]="finalDestinations[1].id" (ngModelChange)="onPlanetSelect($event, 1)">
+        <option *ngIf="finalDestinations[1].distance == -1" selected disabled [ngValue]="finalDestinations[1].id" hidden>{{finalDestinations[1].name}}</option>
+        <option *ngIf="finalDestinations[1].distance !== -1" selected [ngValue]="finalDestinations[1].id">{{finalDestinations[1].name}}</option>
+        <option *ngFor="let planet of remainingPlanets" [ngValue]="planet.id">{{planet.name}}</option>
+      </select>
+    </div>
+    <div class="planetGroup">
+      <label class="label" for="Destination">Destination 3:</label>
+      <select class="planetSelect"   [(ngModel)]="finalDestinations[2].id" (ngModelChange)="onPlanetSelect($event, 2)">
+        <option *ngIf="finalDestinations[2].distance == -1" selected disabled [ngValue]="finalDestinations[2].id" hidden>{{finalDestinations[2].name}}</option>  
+        <option *ngIf="finalDestinations[2].distance !== -1" selected [ngValue]="finalDestinations[2].id">{{finalDestinations[2].name}}</option>
+        <option *ngFor="let planet of remainingPlanets" [ngValue]="planet.id">{{planet.name}}</option>
+      </select>
+    </div>
+    <div class="planetGroup">
+      <label class="label" for="Destination">Destination 4:</label>
+      <select class="planetSelect"  [(ngModel)]="finalDestinations[3].id" (ngModelChange)="onPlanetSelect($event, 3)">
+        <option *ngIf="finalDestinations[3].distance == -1" selected disabled [ngValue]="finalDestinations[3].id" hidden>{{finalDestinations[3].name}}</option>
+        <option *ngIf="finalDestinations[3].distance !== -1" selected [ngValue]="finalDestinations[3].id">{{finalDestinations[3].name}}</option>
+        <option *ngFor="let planet of remainingPlanets" [ngValue]="planet.id">{{planet.name}}</option>
+      </select>
+    </div>
+  </span>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div style="display: block;">
+  <span *ngIf="planets.length !== 0">
+    <div  *ngIf="finalDestinations[0].distance !== -1" class="vehicleSelect">
+      <div *ngFor="let vehicleDestOne of remainingVehicles; index as idx">
+        <label for="vehicleDestOne.id">
+          <input
+            name="vehicleDestOne.id"
+            type="radio"
+            id="vehicleDestOne.id"
+            [value]="vehicleDestOne.id"
+            [(ngModel)]="selectedVehicles[0].id"
+            (ngModelChange)="onVehicleSelect(idx,0)"
+            [disabled]="isVehicleDisabled(idx,0)"
+          />
+        {{vehicleDestOne.name}} ({{vehicleDestOne.totalNumber}})</label>
+      </div>
+    </div>
+    <div *ngIf="finalDestinations[1].distance !== -1" class="vehicleSelect">
+      <div *ngFor="let vehicleDestTwo of remainingVehicles; index as idx">
+        <label for="vehicleDestTwo.id">
+          <input #widget
+            name="vehicleDestTwo.id"
+            type="radio"
+            id="vehicleDestTwo.id"
+            [value]="vehicleDestTwo.id"
+            [(ngModel)]="selectedVehicles[1].id"
+            [disabled]="isVehicleDisabled(idx,1)"
+            (ngModelChange)="onVehicleSelect(idx,1)"
+          />
+        {{vehicleDestTwo.name}} ({{vehicleDestTwo.totalNumber}})</label>
+      </div>
+    </div>
+    <div *ngIf="finalDestinations[2].distance !== -1" class="vehicleSelect">
+      <div *ngFor="let vehicleDestThree of remainingVehicles; index as idx">
+        <label for="vehicleDestThree.id">
+          <input #widget
+            name="vehicleDestThree.id"
+            type="radio"
+            id="vehicleDestThree.id"
+            [value]="vehicleDestThree.id"
+            [(ngModel)]="selectedVehicles[2].id"
+            [disabled] = "isVehicleDisabled(idx,2)"
+            (ngModelChange)="onVehicleSelect(idx,2)"
+            />
+        {{vehicleDestThree.name}} ({{vehicleDestThree.totalNumber}})</label>
+      </div>
+    </div>
+    <div *ngIf="finalDestinations[3].distance !== -1" class="vehicleSelect">
+      <div *ngFor="let vehicleDestFour of remainingVehicles; index as idx">
+        <label for="vehicleDestFour.id">
+          <input #widget
+            name="vehicleDestFour.id"
+            type="radio"
+            id="vehicleDestFour.id"
+            [value]="vehicleDestFour.id"
+            [(ngModel)]="selectedVehicles[3].id"
+            [disabled] = "isVehicleDisabled(idx,3)"
+            (ngModelChange)="onVehicleSelect(idx,3)"
+          />
+        {{vehicleDestFour.name}} ({{vehicleDestFour.totalNumber}})</label>
+      </div>
+    </div>
+  </span>
+</div>
+<div class="timeTaken" *ngIf="timeTaken!=0">
+  Time Taken : {{timeTaken}}
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="allignCenter">
+  <button [disabled]="!isFindValid" (click)="getResult()">Find Falcone!</button>
+</div>
+<div *ngIf="isResultDisplay">
+  <div *ngIf="isSuccess">
+    <h1>Success! Congratulations on Finding Falcone, King Shan is Mighty Pleased</h1>
+    <h1>Time taken: {{timeTaken}}</h1>
+    <h1>Planet found: {{planetFound}}</h1>
+  </div>
+  <div *ngIf="!isSuccess">
+    <h1> MISSION FAILED! </h1>
+  </div>
+  <button (click)="goBack()">Start again!</button>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- <br>
+<br>
+test
+<div *ngFor ="let emp of empArray">
+  <label [for]="emp">
+    <input #widget
+      name="emp.type"
+      type="radio"
+      id="emp.type"
+      [value]="emp"
+      [(ngModel)]="empAssigned"
+      [disabled] = "empDisabled(emp.no)"
+      (change)="empNo()"
+    />
+  {{emp.type}} {{emp.Salary}} ({{emp.no}})</label>
+</div>
+testOver -->
+<!-- <div class="allignCenter">
+  <span>
+    <form class="planetSelect" *ngFor="let vehicle of vehicleList">
+      <label [for]="vehicle" *ngIf="finalDestinations[0].distance !== -1"><input type="radio" name="vehiclesDest1"
+          [value]="vehicle" disabled="isVehicleDisabled(vehicle, 0)">{{vehicle.name}}</label>
+    </form>
+    <form class="planetSelect" *ngFor="let vehicle of vehicleList">
+      <label [for]="vehicle" *ngIf="finalDestinations[1].distance !== -1"><input type="radio" name="vehiclesDest2"
+          [value]="vehicle">{{vehicle.name}}</label>
+    </form>
+    <form *ngFor="let vehicle of vehicleList">
+      <label [for]="vehicle" *ngIf="finalDestinations[2].distance !== -1"><input type="radio" name="vehiclesDest3"
+          [value]="vehicle">{{vehicle.name}}</label>
+    </form>
+    <form *ngFor="let vehicle of vehicleList">
+      <label [for]="vehicle" *ngIf="finalDestinations[3].distance !== -1"><input type="radio" name="vehiclesDest4"
+          [value]="vehicle">{{vehicle.name}}</label>
+    </form>
+  </span>
+</div> -->
+<!-- <div>
+  <span>
+    <form *ngFor="let vehicle of vehicles">
+      <label [for]="vehicle" *ngIf="finalDestinations[0].distance !== -1"><input type="radio" name="vehiclesDest1"
+          [value]="vehicle" disabled="isVehicleDisabled(0)">{{vehicle.name}}</label>
+    </form>
+    <form *ngFor="let vehicle of vehicles">
+      <label [for]="vehicle" *ngIf="selectedPlanetBoolArr[1]"><input type="radio" name="vehiclesDest2"
+          [value]="vehicle">{{vehicle.name}}</label>
+    </form>
+    <form *ngFor="let vehicle of vehicles">
+      <label [for]="vehicle" *ngIf="selectedPlanetBoolArr[2]"><input type="radio" name="vehiclesDest3"
+          [value]="vehicle">{{vehicle.name}}</label>
+    </form>
+    <form *ngFor="let vehicle of vehicles">
+      <label [for]="vehicle" *ngIf="selectedPlanetBoolArr[3]"><input type="radio" name="vehiclesDest4"
+          [value]="vehicle">{{vehicle.name}}</label>
+    </form>
+  </span>
+</div> -->
+
+<!-- <option [value]="" selected="selected" disabled="disabled" hidden="hidden">Select</option> -->
+
+
+<!-- <table class="allignCenter">
+  <tr>
+    <th><label>Destination 1</label></th>
+    <th><label>Destination 2</label></th>
+    <th><label>Destination 3</label></th>
+    <th><label>Destination 4</label></th>
+  </tr>
+  <tr>
+    <td>
+      <select [(ngModel)]="selectedPlanet[0]" (change)="onPlanetSelect(0)">
+          <option *ngFor="let planet of planets" [ngValue]="planet">{{planet.name}}</option>
+      </select>
+    </td>
+    <td>
+      <select [(ngModel)]="selectedPlanet[1]" (change)="onPlanetSelect(1)">
+          <option *ngFor="let planet of planets"  [ngValue]="planet">{{planet.name}}</option>
+      </select>
+    </td>
+    <td>
+      <select [(ngModel)]="selectedPlanet[2]" (change)="onPlanetSelect(2)">
+          <option *ngFor="let planet of planets"  [ngValue]="planet">{{planet.name}}</option>
+      </select>
+    </td>
+    <td>
+      <select [(ngModel)]="selectedPlanet[3]" (change)="onPlanetSelect(3)">
+          <option *ngFor="let planet of planets"  [ngValue]="planet">{{planet.name}}</option>
+      </select>
+    </td>
+    <td><span>Time taken:</span>{{timeTaken}}</td>
+  </tr>
+  <tr>
+    <td>
+      <label *ngIf="selectedPlanetBoolArr[0]">
+        <select [(ngModel)]="selectedVehicle[0]" (change)="onVehicleSelect(0)">
+            <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle" [disabled]="vehicle.totalNumber === 0">{{vehicle.name}}<span>({{vehicle.totalNumber}})</span></option>
+        </select>
+      </label>
+    </td>
+    <td>
+      <label *ngIf="selectedPlanetBoolArr[1]">
+        <select [(ngModel)]="selectedVehicle[1]" (change)="onVehicleSelect(1)">
+            <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle" [disabled]="vehicle.totalNumber === 0">{{vehicle.name}}<span>({{vehicle.totalNumber}})</span></option>
+        </select>
+      </label>
+    </td>
+    <td>
+      <label *ngIf="selectedPlanetBoolArr[2]">
+        <select [(ngModel)]="selectedVehicle[2]" (change)="onVehicleSelect(2)">
+            <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle" [disabled]="vehicle.totalNumber === 0">{{vehicle.name}}<span>({{vehicle.totalNumber}})</span></option>
+        </select>
+      </label>
+    </td>
+    <td>
+      <label *ngIf="selectedPlanetBoolArr[3]">
+        <select [(ngModel)]="selectedVehicle[3]" (change)="onVehicleSelect(3)">
+            <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle" [disabled]="vehicle.totalNumber === 0">{{vehicle.name}}<span>({{vehicle.totalNumber}})</span></option>
+        </select>
+      </label>
+    </td>
+  </tr>
+</table> -->
+
+
+<!-- <div *ngIf="planets">
+  <div>
+    <label for="planetSelection">Destination  : </label>
+    <label for="planetSelection">Destination  : </label>
+    <label for="planetSelection">Destination  : </label>
+    <label for="planetSelection">Destination  : </label>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Select Planet" [(value)]="selectedPlanet[0]" (selectionChange)="onPlanetSelect(0)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let option of planets" [value]="option.name" [disabled]="option.disabled">{{option.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Select Planet" [(value)]="selectedPlanet[1]" (selectionChange)="onPlanetSelect(1)">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let option of planets" [value]="option.name" [disabled]="option.disabled">{{option.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Select Planet" [(value)]="selectedPlanet[2]" (selectionChange)="onPlanetSelect(2)">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let option of planets" [value]="option.name" [disabled]="option.disabled">{{option.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Select Planet" [(value)]="selectedPlanet[3]" (selectionChange)="onPlanetSelect(3)">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let option of planets" [value]="option.name" [disabled]="option.disabled">{{option.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>            
+  </div>
+</div> -->

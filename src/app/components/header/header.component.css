@@ -1,0 +1,48 @@
+.header {
+  background-color: #145474;
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  width: 100%;
+}
+.navigation-main a {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  text-align: right;
+}
+.navigation-main a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+  padding: 10px 15px;
+}
+
+.navigation-main a:hover {
+  color: #ffcc03;
+}
+
+.navigation-main ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: -999em;
+  background-color: #145474;
+}
+
+.navigation-main li {
+  display: inline-block;
+  position: relative;
+  text-align: right;
+}
+.navigation-main h4 {
+    color: rgb(0, 165, 143);
+  display: inline-block;
+  position: relative;
+  text-align: left;  
+}
