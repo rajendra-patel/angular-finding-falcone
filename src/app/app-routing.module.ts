@@ -10,7 +10,11 @@ import { ResultComponent } from './components/result/result.component';
 
 const routes: Routes = [
   // { path: '', component: HelloComponent }
-  { path: '', component: HomeComponent },
+  { path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  { path: 'home', component: HomeComponent },
   { path: 'findfalcon', component: FindFalconComponent },
   { path: 'result', component: ResultComponent },
 
