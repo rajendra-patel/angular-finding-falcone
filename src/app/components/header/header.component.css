@@ -13,8 +13,8 @@
   text-decoration: none;
   display: block;
   white-space: nowrap;
-  margin: 0;
-  padding: 0;
+  margin: 2px 2px 12px 2px;
+  padding: 2px 2px 12px 2px;
   list-style: none;
   width: 100%;
   text-align: right;
@@ -25,17 +25,20 @@
 }
 
 .navigation-main ul {
-  margin: 0;
+  margin: 5px;
   padding: 0;
   list-style: none;
   position: absolute;
-  left: -999em;
+  /* left: -999em; */
   background-color: #145474;
 }
 
 .navigation-main li {
   display: inline-block;
   position: relative;
+  align-content: right;
+  margin: 2px 12px 2px 0px;
+  padding: 2px 12px 2px 0px;
   text-align: right;
 }
 .navigation-main h4 {
