@@ -1,3 +1,7 @@
+body {
+  background-color: darkslategrey;
+}
 p {
+  color: #fff;
   font-family: Lato;
 }
