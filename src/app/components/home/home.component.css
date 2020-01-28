@@ -5,5 +5,6 @@ h4 {
   color: #fff;
 }
 h1 {
-  color: rgb(29, 88, 139);
+  text-shadow: 2px 2px 4px #000000;
+  color: rgba(30, 174, 246, 0.551);
 }

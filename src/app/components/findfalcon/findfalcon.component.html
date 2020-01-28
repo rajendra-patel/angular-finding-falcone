@@ -1,4 +1,4 @@
-<div>
+<div class="content">
   <p class="allignCenter">
       King Shan has received intelligence that Al Falcone is in hiding in one of these 6 planets - DonLon,
       Enchai,
@@ -10,15 +10,16 @@
   <div>
     <h4 style="text-align:center">Select the Planets where you want to send the army : </h4>
   </div>
-  <div class="allignCenter">
+  <div style="display: block">
     <div style="display: inline-block">
       <div class="planetGroup" *ngFor="let planetId of noOfDestinations">
         <app-planet [id] = "planetId" [unselectedPlanets] = "unselectedPlanets" (onSelectPlanet)="onSelectPlanet($event)"></app-planet>
       </div>
-      <div class="planetGroup" *ngIf="timeTaken!=0">
-        Time Taken : {{timeTaken}}
-      </div>
     </div>
+    <div class="timeTaken" *ngIf="timeTaken!=0">
+      Time Taken : {{timeTaken}}
+    </div>
+
   </div>
 
   <div  *ngIf="anyPlanetSelected()">
@@ -32,6 +33,6 @@
 
 
   <div style="text-align: center; align-items: center; align-content: center;">
-    <button [disabled]="!isReadyForExpedition" (click)="getResult()">Find Falcone!</button>
+    <button class="button3" [disabled]="!isReadyForExpedition" (click)="getResult()">Send Army!</button>
   </div>
 </div>

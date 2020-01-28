@@ -1,4 +1,42 @@
 /* Add application styles & imports to this file! */
 body {
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/29/6f/f9/296ff9a5c87b06ba6c153f4592d703fa.jpg");
   background-color: rgb(17, 17, 17);
 }
+
+
+.button3 {
+  display: inline-block;
+  border:0.05em solid #FFFFFF;
+  padding:0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  background-color:#4eb5f100;
+  text-align:center;
+  transition: all 0.2s;
+}
+.button3:hover{
+  background-color:#4095c600;
+  border-color:#3769b1;
+}
+
+button3:disabled{
+  color:rgb(0, 0, 0);
+  border-color:rgb(0, 0, 0);
+}
+button3:active{
+  color:rgb(41, 155, 255);
+  border-color:rgb(46, 158, 255);
+}
+/* @media all and (max-width:30em){
+ a .button3{
+    display:block;
+    margin:0.2em auto;
+ }
+} */
