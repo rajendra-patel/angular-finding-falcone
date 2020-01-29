@@ -1,4 +1,4 @@
-<label for="Destination{{destId}}">Desstination {{destId+1}} :</label>
+<label for="Destination{{destId}}">Desstination {{destId+1}}</label>
 <br>
 <select class="planetSelect" [(ngModel)]="selectedPlanet.id" (ngModelChange)="onSelectingPlanet($event)">
   <option class="selectOption" *ngIf="selectedPlanet.id == -1" selected disabled [ngValue]="selectedPlanet.id" hidden>Select Planet</option>

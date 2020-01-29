@@ -24,7 +24,7 @@
 
   <div  *ngIf="anyPlanetSelected()">
     <h4 style="text-align:center">Select any four Vehicles in which you want to send the army : </h4>
-    <div style="display: inline-block;">
+    <div style="display: inline-block; width: 1080px;">
       <div *ngFor="let vehicleId of noOfDestinations" class="vehicleSelect">
         <app-vehicle *ngIf="selectedPlanetsId[vehicleId] !== -1" [id] = "vehicleId" [unselectedVehicles] = "unselectedVehicles" [DisabledVehicles] = "disabledVehiclesList[vehicleId]" (onSelectVehicle)="onSelectVehicle($event)"></app-vehicle>
       </div>
