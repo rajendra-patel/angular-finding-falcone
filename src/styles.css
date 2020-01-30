@@ -14,7 +14,7 @@ body {
   border-radius:2em;
   box-sizing: border-box;
   text-decoration:none;
-  font-family:'Roboto',sans-serif;
+  font-family: "Ubuntu Mono";
   font-weight:300;
   color:#FFFFFF;
   background-color:#4eb5f100;
@@ -40,3 +40,13 @@ button3:active{
     margin:0.2em auto;
  }
 } */
+h1 {
+  font-family: Ubuntu-Mono;
+}
+p {
+  font-family: Ubuntu-Mono;
+}
+
+h4 {
+  font-family: Ubuntu-Mono;
+}

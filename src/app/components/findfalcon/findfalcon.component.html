@@ -1,5 +1,5 @@
 <div class="content">
-  <p class="allignCenter">
+  <p style="text-align: justify; color:#ffffff; padding: 10px; 20px; line-height: 130%; font-size: 120%;">
       King Shan has received intelligence that Al Falcone is in hiding in one of these 6 planets - DonLon,
       Enchai,
       Jebing, Sapir, Lerbin & Pingasor. However he has limited resources at his disposal & can send his
@@ -8,9 +8,9 @@
   </p>
 
   <div>
-    <h4 style="text-align:center">Select the Planets where you want to send the army : </h4>
+    <h4 style="text-align:center; font-size: 125%">Select the Planets where you want to send the army : </h4>
   </div>
-  <div style="display: block">
+  <div style="display: block; width:100%">
     <div style="display: inline-block">
       <div class="planetGroup" *ngFor="let planetId of noOfDestinations">
         <app-planet [id] = "planetId" [unselectedPlanets] = "unselectedPlanets" (onSelectPlanet)="onSelectPlanet($event)"></app-planet>
@@ -24,7 +24,7 @@
 
   <div  *ngIf="anyPlanetSelected()">
     <h4 style="text-align:center">Select any four Vehicles in which you want to send the army : </h4>
-    <div style="display: inline-block; width: 1080px;">
+    <div style="display: inline-block;">
       <div *ngFor="let vehicleId of noOfDestinations" class="vehicleSelect">
         <app-vehicle *ngIf="selectedPlanetsId[vehicleId] !== -1" [id] = "vehicleId" [unselectedVehicles] = "unselectedVehicles" [DisabledVehicles] = "disabledVehiclesList[vehicleId]" (onSelectVehicle)="onSelectVehicle($event)"></app-vehicle>
       </div>
