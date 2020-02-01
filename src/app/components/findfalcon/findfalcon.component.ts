@@ -45,14 +45,19 @@ export class FindFalconComponent implements OnInit {
     console.log(this.noOfDestinations);
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.selectedVehicles = this.dataService.initializeRemainingVehicles(this.noOfDestinations);
     this.selectedPlanets = this.dataService.initializeRemainingPlanets(this.noOfDestinations);
     this.previousSelectedVehicle = new Vehicle();
     this.previousSelectedVehicle.setData(-1, "select Vehicle", -1, -1, -1);
     // this.unselectedPlanets = this.dataService.getPlanets();
-    this.requestPlanets();
-    await this.requestVehicles();
+
+    this.planetList = this.dataService.getPlanets();
+    this.unselectedPlanets = this.planetList.slice();
+    // this.requestPlanets();
+
+    this.vehicleList = this.dataService.getVehicles();
+    this.unselectedVehicles = this.vehicleList.slice();
     this.requestToken();
   }
 
@@ -109,8 +114,8 @@ export class FindFalconComponent implements OnInit {
       .filter(
         planet =>
           planet.id !== this.selectedPlanetsId.find(id => id == planet.id)
-      )
-      .slice();
+      );
+      // .slice();
     this.unselectedPlanets = instArray;
     console.log("updated unselectedPlanet", this.unselectedPlanets);
     console.log("vehicle list onplanetselect ", this.unselectedVehicles);

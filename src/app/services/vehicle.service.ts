@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import {HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
 
@@ -16,40 +15,22 @@ interface VehiclePrototype {
 export class VehicleService {
   private vehicleArr: Vehicle[];
 
-  constructor(private http: Http, private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient) {
     this.vehicleArr = [];
   }
 
   async httpGetRequest(){
-    let result = await this.httpClient.get<VehiclePrototype>(environment.vehiclesEndPointUrl).toPromise();
-    return result;
-  }
-  async getVehicles(){ //: Observable<VehiclePrototype[]>
-    // let vehiclePrototypeList = await this.httpClient.get<VehiclePrototype>(environment.vehiclesEndPointUrl).toPromise();
-    let returningVehicles: Vehicle[];
-    if(this.vehicleArr.length == 0){
-      let result = await this.httpGetRequest();
-      console.log("Result Fetched",result);
-      await this.parseResponse(result);
-      // promise.then(
-      //   res => {
-      //       console.log("Response from httpClient",res);
-      //       returningVehicles = this.parseResponse(res);
-      //     }
-      //   ).catch(
-      //     res => console.log(res)
-      //   );
-      //   console.log("returning Vehicles"+returningVehicles);
-      // return returningVehicles;
-    }
-    console.log("Get Vehicles inside Vehicle Service  "+this.vehicleArr);
-    return await this.vehicleArr;
-    // console.log("Async-Await Vehicle List: ", vehiclePrototypeList);
-    // return this.parseResponse(vehiclePrototypeList);
+    return await this.httpClient.get<VehiclePrototype>(environment.vehiclesEndPointUrl).toPromise();
   }
 
-  getVehicleDetails() {
-    return this.http.get(environment.vehiclesEndPointUrl);
+  async requestVehicles(){
+    if(this.vehicleArr.length == 0){
+      let result = await this.httpGetRequest();
+      console.log("Result Fetched "+result);
+      await this.parseResponse(result);
+    }
+    console.log("Reached Request Vehicles in Vehicle Service "+ " \n Returning Vehicle Array "+this.vehicleArr);
+    return await this.vehicleArr;
   }
 
   parseResponse(res: any) {
@@ -66,7 +47,6 @@ export class VehicleService {
         this.vehicleArr.push(dummy);
       }
     }
-    console.log(this.vehicleArr);
     return this.vehicleArr;
   }
 }

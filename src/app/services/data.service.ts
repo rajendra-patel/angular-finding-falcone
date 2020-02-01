@@ -17,37 +17,20 @@ export class DataService {
   result: {status: string, planet: string, totalTimeTaken: number};
 
   constructor(@Optional() public selectedPlanets: Planet[], @Optional() id: number, private planetService: PlanetService, private vehicleService: VehicleService) {
-    this.getPlanets();
-    this.getVehicles();
+    this.requestData();
     this.result = {status: "", planet: "", totalTimeTaken: -1};
   }
 
-  ngOnInit(){
-
+  async requestData() {
+    this.planetList = await this.planetService.requestPlanets();
+    this.vehicleList = await this.vehicleService.requestVehicles();
   }
-
-  addPlanet(destId: number, planetId: number){
-    // this.selectedPlanets.push()
-    console.log(" destId :"+ destId + " planetId :"+ planetId)
-  }
-
   getPlanets(){
-    this.planetService.getPlanetDetails().subscribe(res => {
-      res = res.json();
-      this.planetList = this.planetService.parseResponse(res);
-      console.log(this.planetList);
-    });
+    return this.planetList;
   }
 
-  async getVehicles(){
-/*    
-    this.vehicleService.getVehicleDetails().subscribe(res => {
-      res = res.json();
-      this.vehicleList = this.vehicleService.parseResponse(res);
-      console.log(this.vehicleList);
-    });
-*/
-    this.vehicleList = await this.vehicleService.getVehicles();
+  getVehicles(){
+    return this.vehicleList;
   }
 
   initializeSelectedPlanet(){
@@ -136,4 +119,7 @@ export class DataService {
     return this.result;
   }
 
+  resetData(){
+    console.log("Resetting All Values");
+  }
 }
