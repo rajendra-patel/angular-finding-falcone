@@ -46,49 +46,26 @@ export class FindFalconComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedVehicles = this.dataService.initializeRemainingVehicles(this.noOfDestinations);
-    this.selectedPlanets = this.dataService.initializeRemainingPlanets(this.noOfDestinations);
+    this.dataService.setNoOfDestinations(this.noOfDestinations);
+    this.selectedVehicles = this.dataService.initializeSelectedVehicles();
+    this.selectedPlanets = this.dataService.initializeSelectedPlanets();
     this.previousSelectedVehicle = new Vehicle();
     this.previousSelectedVehicle.setData(-1, "select Vehicle", -1, -1, -1);
     // this.unselectedPlanets = this.dataService.getPlanets();
 
     this.planetList = this.dataService.getPlanets();
-    this.unselectedPlanets = this.planetList.slice();
+    this.unselectedPlanets = this.dataService.initializeUnselectedPlanets();
     // this.requestPlanets();
 
     this.vehicleList = this.dataService.getVehicles();
-    this.unselectedVehicles = this.vehicleList.slice();
+    this.unselectedVehicles = this.dataService.initializeUnselectedVehicles();
     this.requestToken();
   }
 
-  requestPlanets(){
-    this.planetService.getPlanetDetails().subscribe(res => {
-      res = res.json();
-      this.planetList = this.planetService.parseResponse(res);
-      console.log("planet List " + this.planetList);
-      this.planetList.forEach(planet => this.unselectedPlanets.push(planet));
-    });
-  }
-
-  async requestVehicles(){
-/*
-    this.vehicleService.getVehicleDetails().subscribe(res => {
-      res = res.json();
-      console.log(res);
-      this.vehicleList = this.vehicleService.parseResponse(res);
-      console.log("vehicle List: " + this.vehicleList);
-      this.vehicleList.forEach(vehicle => this.unselectedVehicles.push(vehicle));
-    });
-    */
-    this.vehicleList = await this.vehicleService.getVehicles();
-    this.unselectedVehicles = await this.vehicleList.slice();
-
-    console.log("vehicleList in requestVehicles find comp",this.vehicleList);
-    console.log("unselected vehicles first init inside find comp"+this.unselectedVehicles);
-  }
   requestToken(){
     this.tokenService.getToken();
   }
+
   async ngAfterViewInit() {
     // this.planetList.forEach(elm => {
     //   this.unselectedPlanets.push(elm);
@@ -98,11 +75,7 @@ export class FindFalconComponent implements OnInit {
     console.log(" unselectedPlanets :",this.unselectedPlanets);
     console.log(" unselectedVehicles :",this.unselectedVehicles);
   }
-  addPlanet(event: any) {
-    console.log("add Planet Called " + " received data : ");
-    console.log(event);
-    this.dataService.addPlanet(event.destId, event.planetId);
-  }
+
   onSelectPlanet(event: any) {
     console.log("Final Evenet ", event);
     this.selectedPlanetsId[event.destId] = event.planet.id;

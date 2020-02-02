@@ -11,14 +11,22 @@ import { VehicleService } from './vehicle.service';
   providedIn: 'root'
 })
 export class DataService {
+  noOfDestinations: number[];
   planetList: Planet[] = [];
   unselectedPlanets: Planet[] = [];
+  selectedPlanets: Planet[] = [];
   vehicleList: Vehicle[] = [];
+  unselectedVehicles: Vehicle[] = [];
+  selectedVehicles: Vehicle[] = [];
   result: {status: string, planet: string, totalTimeTaken: number};
 
-  constructor(@Optional() public selectedPlanets: Planet[], @Optional() id: number, private planetService: PlanetService, private vehicleService: VehicleService) {
+  constructor(@Optional() id: number, private planetService: PlanetService, private vehicleService: VehicleService) {
     this.requestData();
     this.result = {status: "", planet: "", totalTimeTaken: -1};
+  }
+
+  setNoOfDestinations(noOfDestinations: number[]){
+    this.noOfDestinations = noOfDestinations;
   }
 
   async requestData() {
@@ -31,6 +39,20 @@ export class DataService {
 
   getVehicles(){
     return this.vehicleList;
+  }
+
+  initializeSelectedPlanets(){
+    let planet = new Planet();
+    planet.setData(-1, "Select Planet", -1);
+    this.noOfDestinations.forEach(dest => this.selectedPlanets.push(planet));
+    return this.selectedPlanets;
+  }
+
+  initializeSelectedVehicles(){
+    let vehicle = new Vehicle();
+    vehicle.setData(-1, "Select Vehicle", -1, -1, -1);
+    this.noOfDestinations.forEach(dest => this.selectedVehicles.push(vehicle));
+    return this.selectedVehicles;
   }
 
   initializeSelectedPlanet(){
@@ -46,6 +68,15 @@ export class DataService {
     console.log("inside initialize vehicle");
   }
 
+  initializeUnselectedPlanets(){
+    this.unselectedPlanets = this.planetList.slice();
+    return this.unselectedPlanets;
+  }
+
+  initializeUnselectedVehicles(){
+    this.unselectedVehicles = this.vehicleList.slice();
+    return this.unselectedVehicles;
+  }
 
   retrieveSelectedPlanet(selectedPlanet: Planet){ //DEBUG HERE planetList not initialized
     let planetFound: Planet;
