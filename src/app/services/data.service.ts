@@ -20,9 +20,13 @@ export class DataService {
   vehicleList: Vehicle[] = [];
   unselectedVehicles: Vehicle[] = [];
   selectedVehicles: Vehicle[] = [];
+  nullVehicle: Vehicle;
+  nullVehicles: Vehicle[] = [];
   result: {status: string, planet: string, totalTimeTaken: number};
 
   constructor(private planetService: PlanetService, private vehicleService: VehicleService, private tokenService: TokenService) {
+    this.nullVehicle = new Vehicle();
+    this.nullVehicle.setData(-1, "Select Vehicle", -1, -1, -1);
     this.requestData();
     this.result = {status: "", planet: "", totalTimeTaken: -1};
   }
@@ -44,14 +48,24 @@ export class DataService {
         requestedData = await this.vehicleList;
         break;
       }
+      case "UnselectedPlanets": {
+        this.unselectedPlanets = await this.planetList.slice();
+        requestedData = await this.unselectedPlanets;
+        break;
+      }
+      case "UnselectedVehicles": {
+        this.unselectedVehicles = await this.vehicleList.slice();
+        requestedData = await this.unselectedVehicles;
+        break;
+      }
       default: {
         this.planetList = await this.planetService.requestPlanets();
         this.vehicleList = await this.vehicleService.requestVehicles();
         this.tokenService.requestToken();
         break;
       }
-      return await requestedData;
     }
+    return await requestedData;
   }
   getPlanets(){
   /*
@@ -77,6 +91,14 @@ export class DataService {
     return this.vehicleList;
   }
 
+  getRemainingVehicles(){
+    return this.unselectedVehicles;
+  }
+
+  getRemainingPlanets(){
+    return this.unselectedPlanets;
+  }
+
   isRequestedDataValid(){
     return !(this.planetList.length == 0 && this.vehicleList.length == 0);
   }
@@ -89,9 +111,10 @@ export class DataService {
   }
 
   initializeSelectedVehicles(){
-    let vehicle = new Vehicle();
-    vehicle.setData(-1, "Select Vehicle", -1, -1, -1);
-    this.noOfDestinations.forEach(dest => this.selectedVehicles.push(vehicle));
+    console.log(this.noOfDestinations.length);
+    this.noOfDestinations.forEach(dest => this.nullVehicles.push(this.nullVehicle));
+    console.log(this.nullVehicles);
+    this.selectedVehicles = this.nullVehicles.slice();
     return this.selectedVehicles;
   }
 
@@ -155,7 +178,7 @@ export class DataService {
       return selectedVehicle;
     } else {
       let retVehicle = new Vehicle();
-      retVehicle.setData(-1, "Select Vehicle", -1, -1, -1);
+      retVehicle.setVehicle(this.nullVehicle);
       return retVehicle;
     }
   }
@@ -176,6 +199,10 @@ export class DataService {
     return remainingPlanets;
   }
 
+  assignSelectedVehicle(destId: number,vehicle: Vehicle){
+    this.selectedVehicles[destId] = vehicle;
+  }
+
   setResult(result: {status: string, planet: string, totalTimeTaken: number}){
     console.log("Inside Set Result ",result);
     this.result.planet = result.planet;
@@ -192,5 +219,19 @@ export class DataService {
 
   resetData(){
     console.log("Resetting All Values");
+    console.log("Old unselected Vehicles "+this.unselectedVehicles);
+    console.log("Vehicle List "+this.vehicleList);
+
+    this.selectedVehicles.forEach(vehicle => vehicle.setVehicle(this.nullVehicle));
+/*
+    for(let i=0; i<this.vehicleList.length; i++){
+      let pushedVehicle = new Vehicle();
+      pushedVehicle.setVehicle(this.vehicleList[i]);
+
+      this.unselectedVehicles[i] = pushedVehicle; 
+    }
+*/
+    this.vehicleList.forEach(vehicle => this.unselectedVehicles.find(sVehicle => sVehicle.id == vehicle.id).setVehicle(vehicle));
+    console.log("New Unselected Vehicles "+this.unselectedVehicles);
   }
 }

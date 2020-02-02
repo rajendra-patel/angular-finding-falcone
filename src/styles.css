@@ -5,7 +5,9 @@ body {
   background-color: rgb(17, 17, 17);
 }
 
-
+dudURL{
+  cursor: pointer;
+}
 .button3 {
   display: inline-block;
   border:0.05em solid #FFFFFF;
@@ -41,12 +43,15 @@ button3:active{
  }
 } */
 h1 {
-  font-family: Ubuntu-Mono;
+  font-family: "Ubuntu Mono";
 }
 p {
-  font-family: Ubuntu-Mono;
+  text-indent: 4%;
+  text-align: justify;
+  padding: 5px 75px;
+  font-family: "Ubuntu Mono";
 }
 
 h4 {
-  font-family: Ubuntu-Mono;
+  font-family: "Ubuntu Mono";
 }

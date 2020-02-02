@@ -55,7 +55,9 @@ export class FindFalconComponent implements OnInit {
   async ngAfterViewInit() {
     if(this.planetList.length == 0 && this.vehicleList.length == 0){
       this.planetList = await this.dataService.requestData("Planets");
+      this.unselectedPlanets = await this.dataService.requestData("UnselectedPlanets");
       this.vehicleList = await this.dataService.requestData("Vehicles");
+      this.unselectedVehicles = await this.dataService.requestData("UnselectedVehicles");
     }
     console.log(" unselectedPlanets :",this.unselectedPlanets);
     console.log(" unselectedVehicles :",this.unselectedVehicles);
@@ -93,6 +95,7 @@ export class FindFalconComponent implements OnInit {
 
   onSelectVehicle(event: any) {
     console.log(" Event Received at findfalcon ",event);
+    this.dataService.assignSelectedVehicle(event.destId, event.vehicle);
     this.selectedVehiclesId[event.destId] = event.vehicle.id;
     this.selectedVehicles[event.destId] = event.vehicle;
     this.previousSelectedVehicle = event.previousSelectedVehicle;
