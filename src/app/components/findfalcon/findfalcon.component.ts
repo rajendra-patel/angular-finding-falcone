@@ -53,6 +53,10 @@ export class FindFalconComponent implements OnInit {
   }
 
   async ngAfterViewInit() {
+    if(this.planetList.length == 0 && this.vehicleList.length == 0){
+      this.planetList = await this.dataService.requestData("Planets");
+      this.vehicleList = await this.dataService.requestData("Vehicles");
+    }
     console.log(" unselectedPlanets :",this.unselectedPlanets);
     console.log(" unselectedVehicles :",this.unselectedVehicles);
   }
@@ -142,7 +146,7 @@ export class FindFalconComponent implements OnInit {
       if (addBackIdx !== -1) {
         this.unselectedVehicles[addBackIdx].totalNumber += 1;
       }
-      this.selectedVehicles[event.destId].setData(-1, "Select Vehicle", -1 -1 -1);
+      this.selectedVehicles[event.destId].setData(-1, "Select Vehicle", -1, -1, -1);
       this.previousSelectedVehicle.setVehicle(this.selectedVehicles[event.destId]);
     }
   }

@@ -32,13 +32,16 @@ export class DataService {
   }
 
   async requestData(requestedObject?: String) {
+    let requestedData: any;
     switch(requestedObject) {
       case "Planets": {
         this.planetList = await this.planetService.requestPlanets();
+        requestedData = await this.planetList;
         break;
       }
       case "Vehicles": {
         this.vehicleList = await this.vehicleService.requestVehicles();
+        requestedData = await this.vehicleList;
         break;
       }
       default: {
@@ -47,20 +50,35 @@ export class DataService {
         this.tokenService.requestToken();
         break;
       }
+      return await requestedData;
     }
   }
   getPlanets(){
+  /*
+    let planets: Planet[];
     if(this.planetList.length === 0) {
-      this.requestData("Planets");
+      console.log("reRequesting planets");
+      planets = await this.requestData("Planets");
+      this.planetList = planets;
     }
+  */
     return this.planetList;
   }
 
   getVehicles(){
+  /*
+    let vehicles: Vehicle[];
     if(this.vehicleList.length === 0){
-      this.requestData("Vehicles");
+      console.log("reRequesting vehicles");
+      vehicles = await this.requestData("Vehicles");
+      this.vehicleList = vehicles;
     }
+  */
     return this.vehicleList;
+  }
+
+  isRequestedDataValid(){
+    return !(this.planetList.length == 0 && this.vehicleList.length == 0);
   }
 
   initializeSelectedPlanets(){

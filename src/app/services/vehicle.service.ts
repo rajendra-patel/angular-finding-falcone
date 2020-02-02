@@ -26,7 +26,7 @@ export class VehicleService {
   async requestVehicles(){
     if(this.vehicleArr.length == 0){
       let result = await this.httpGetRequest();
-      console.log("Result Fetched "+result);
+      console.log("Result Fetched ",result);
       await this.parseResponse(result);
     }
     console.log("Reached Request Vehicles in Vehicle Service "+ " \n Returning Vehicle Array "+this.vehicleArr);

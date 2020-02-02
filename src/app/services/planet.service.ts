@@ -24,7 +24,7 @@ export class PlanetService {
   async requestPlanets(){
     if(this.planetArr.length == 0){
       let result = await this.httpGetRequest();
-      console.log("Result Fetched "+result);
+      console.log("Result Fetched ",result);
       await this.parseResponse(result);
     }
     console.log("Reached Request Planets in Planet Service "+ " \n Returning Planet Array "+this.planetArr);
