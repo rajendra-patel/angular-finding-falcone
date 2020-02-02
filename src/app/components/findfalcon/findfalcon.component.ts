@@ -19,7 +19,7 @@ export class FindFalconComponent implements OnInit {
   private planetList: Planet[] = [];
   private vehicleList: Vehicle[] = [];
   private selectedPlanetsId: number[] = [-1, -1, -1, -1];
-  private selectedPlanets: Planet[] = [];
+  private selectedPlanets: Planet[];
   private selectedVehiclesId: number[] = [-1, -1, -1, -1];
   private selectedVehicles: Vehicle[] = [];
   private unselectedPlanets: Planet[] = [];
@@ -77,15 +77,15 @@ export class FindFalconComponent implements OnInit {
     this.selectedPlanetsId[event.destId] = event.planet.id;
     this.selectedPlanets[event.destId] = event.planet;
     console.log("selectedPlanetsId After Updating ", this.selectedPlanetsId);
-
-    this.unselectedPlanets = [];
+  
+    this.unselectedPlanets.length = 0;
     let instArray = this.planetList
       .filter(
         planet =>
           planet.id !== this.selectedPlanetsId.find(id => id == planet.id)
       );
       // .slice();
-    this.unselectedPlanets = instArray;
+    this.unselectedPlanets.push(...instArray);
     console.log("updated unselectedPlanet", this.unselectedPlanets);
     console.log("vehicle list onplanetselect ", this.unselectedVehicles);
     this.processSelectedVehicleValidity(event);
@@ -123,8 +123,8 @@ export class FindFalconComponent implements OnInit {
 
   anyPlanetSelected(){
     let isPlanetSelected: boolean = false;
-    this.selectedPlanetsId.forEach(planetId => {
-      if(planetId !== -1){
+    this.selectedPlanets.forEach(planet => {
+      if(planet.id !== -1){
         isPlanetSelected = true;
         return;
       }

@@ -137,6 +137,7 @@ export class DataService {
   }
 
   initializeUnselectedVehicles(){
+    //
     console.log("********************************Initializing Unselected Vehicles***********************************")
     this.vehicleList.forEach(vehicle => {
       let uSVehicle = new Vehicle();
@@ -227,7 +228,7 @@ export class DataService {
     console.log("Resetting All Values");
     console.log("Old unselected Vehicles "+this.unselectedVehicles);
     console.log("Vehicle List "+this.vehicleList);
-
+    this.selectedPlanets.forEach(planet => planet.setData(-1, "Select Planet", -1));
     this.selectedVehicles.forEach(vehicle => vehicle.setVehicle(this.nullVehicle));
 /*
     for(let i=0; i<this.vehicleList.length; i++){
@@ -238,6 +239,8 @@ export class DataService {
     }
 */
     this.vehicleList.forEach(vehicle => this.unselectedVehicles.find(sVehicle => sVehicle.id == vehicle.id).setVehicle(vehicle));
+    this.unselectedPlanets.length=0;
+    this.unselectedPlanets.push(...this.planetList);
     console.log("New Unselected Vehicles "+this.unselectedVehicles);
   }
 }

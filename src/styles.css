@@ -5,10 +5,11 @@ body {
   background-color: rgb(17, 17, 17);
 }
 
-dudURL{
+.dudURL{
   cursor: pointer;
 }
 .button3 {
+  font-size: 85%;
   display: inline-block;
   border:0.05em solid #FFFFFF;
   padding:0.3em 1.2em;
@@ -17,7 +18,7 @@ dudURL{
   box-sizing: border-box;
   text-decoration:none;
   font-family: "Ubuntu Mono";
-  font-weight:300;
+  font-weight:600;
   color:#FFFFFF;
   background-color:#4eb5f100;
   text-align:center;
@@ -46,12 +47,16 @@ h1 {
   font-family: "Ubuntu Mono";
 }
 p {
+  color: #ffffff;
   text-indent: 4%;
   text-align: justify;
-  padding: 5px 75px;
+  padding: 5px 175px;
   font-family: "Ubuntu Mono";
+  line-height: 130%; font-size: 120%;
 }
 
 h4 {
   font-family: "Ubuntu Mono";
+  text-align:center;
+  font-size: 125%
 }
