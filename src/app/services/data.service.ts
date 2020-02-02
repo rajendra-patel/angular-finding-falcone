@@ -137,7 +137,13 @@ export class DataService {
   }
 
   initializeUnselectedVehicles(){
-    this.unselectedVehicles = this.vehicleList.slice();
+    console.log("********************************Initializing Unselected Vehicles***********************************")
+    this.vehicleList.forEach(vehicle => {
+      let uSVehicle = new Vehicle();
+      uSVehicle.setVehicle(vehicle);
+      this.unselectedVehicles.push(uSVehicle)
+    });
+    console.log("Unselected Vehicles ="+this.unselectedVehicles);
     return this.unselectedVehicles;
   }
 
