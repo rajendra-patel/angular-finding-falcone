@@ -8,7 +8,7 @@ export class TokenService {
 
   constructor(private http:Http){}
 
-  getToken(){
+  requestToken(){
     let headers = new Headers({'Accept': 'application/json'});
     let body = '';
     this.http.post(environment.tokenEndPointUrl,body, {headers: headers})

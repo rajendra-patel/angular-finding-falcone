@@ -6,7 +6,6 @@ import { Vehicle } from "../../models/vehicle";
 import { PlanetService } from "../../services/planet.service";
 import { VehicleService } from "../../services/vehicle.service";
 import { DataService } from "../../services/data.service";
-import { TokenService } from "../../services/token.service";
 import { FindFalconService } from "../../services/findfalcon.service";
 
 
@@ -38,7 +37,6 @@ export class FindFalconComponent implements OnInit {
     private dataService: DataService,
     private planetService: PlanetService,
     private vehicleService: VehicleService,
-    private tokenService: TokenService,
     private findFalconService: FindFalconService,
     private router : Router
   ) {
@@ -51,31 +49,23 @@ export class FindFalconComponent implements OnInit {
     this.selectedPlanets = this.dataService.initializeSelectedPlanets();
     this.previousSelectedVehicle = new Vehicle();
     this.previousSelectedVehicle.setData(-1, "select Vehicle", -1, -1, -1);
-    // this.unselectedPlanets = this.dataService.getPlanets();
-
-    this.planetList = this.dataService.getPlanets();
-    this.unselectedPlanets = this.dataService.initializeUnselectedPlanets();
-    // this.requestPlanets();
-
-    this.vehicleList = this.dataService.getVehicles();
-    this.unselectedVehicles = this.dataService.initializeUnselectedVehicles();
-    this.requestToken();
-  }
-
-  requestToken(){
-    this.tokenService.getToken();
+    this.retrieveData();
   }
 
   async ngAfterViewInit() {
-    // this.planetList.forEach(elm => {
-    //   this.unselectedPlanets.push(elm);
-    // });
-    // await this.vehicleList.forEach(vehicle => this.unselectedVehicles.push(vehicle));
-
     console.log(" unselectedPlanets :",this.unselectedPlanets);
     console.log(" unselectedVehicles :",this.unselectedVehicles);
   }
+  retrieveData(){
+    // Retrieving Planet Data
+    this.planetList = this.dataService.getPlanets();
+    this.unselectedPlanets = this.dataService.initializeUnselectedPlanets();
 
+    // Retrieving Vehicle Data
+    this.vehicleList = this.dataService.getVehicles();
+    this.unselectedVehicles = this.dataService.initializeUnselectedVehicles();
+
+  }
   onSelectPlanet(event: any) {
     console.log("Final Evenet ", event);
     this.selectedPlanetsId[event.destId] = event.planet.id;

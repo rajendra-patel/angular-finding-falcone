@@ -6,12 +6,14 @@ import { Vehicle } from '../models/vehicle';
 
 import { PlanetService } from './planet.service';
 import { VehicleService } from './vehicle.service';
+import { TokenService } from "./token.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   noOfDestinations: number[];
+  id: number=0;
   planetList: Planet[] = [];
   unselectedPlanets: Planet[] = [];
   selectedPlanets: Planet[] = [];
@@ -20,7 +22,7 @@ export class DataService {
   selectedVehicles: Vehicle[] = [];
   result: {status: string, planet: string, totalTimeTaken: number};
 
-  constructor(@Optional() id: number, private planetService: PlanetService, private vehicleService: VehicleService) {
+  constructor(private planetService: PlanetService, private vehicleService: VehicleService, private tokenService: TokenService) {
     this.requestData();
     this.result = {status: "", planet: "", totalTimeTaken: -1};
   }
@@ -29,15 +31,35 @@ export class DataService {
     this.noOfDestinations = noOfDestinations;
   }
 
-  async requestData() {
-    this.planetList = await this.planetService.requestPlanets();
-    this.vehicleList = await this.vehicleService.requestVehicles();
+  async requestData(requestedObject?: String) {
+    switch(requestedObject) {
+      case "Planets": {
+        this.planetList = await this.planetService.requestPlanets();
+        break;
+      }
+      case "Vehicles": {
+        this.vehicleList = await this.vehicleService.requestVehicles();
+        break;
+      }
+      default: {
+        this.planetList = await this.planetService.requestPlanets();
+        this.vehicleList = await this.vehicleService.requestVehicles();
+        this.tokenService.requestToken();
+        break;
+      }
+    }
   }
   getPlanets(){
+    if(this.planetList.length === 0) {
+      this.requestData("Planets");
+    }
     return this.planetList;
   }
 
   getVehicles(){
+    if(this.vehicleList.length === 0){
+      this.requestData("Vehicles");
+    }
     return this.vehicleList;
   }
 
@@ -99,7 +121,7 @@ export class DataService {
   }
 
   retrieveSelectedVehicle(selectedVehicle: Vehicle){
-    let vehicleFound: Planet;
+    let vehicleFound: Vehicle;
     let foundVehicle: boolean = false;
     console.log("retrievingSelected Vehicle ",selectedVehicle.id);
     this.vehicleList.forEach(vehicle => {                     // change planetList to remainingPlanets
