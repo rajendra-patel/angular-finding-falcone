@@ -22,6 +22,8 @@ export class DataService {
   selectedVehicles: Vehicle[] = [];
   nullVehicle: Vehicle;
   nullVehicles: Vehicle[] = [];
+  timeForDestination: number[] = [0,0,0,0];
+  timeTaken:number = 0;
   result: {status: string, planet: string, totalTimeTaken: number};
 
   constructor(private planetService: PlanetService, private vehicleService: VehicleService, private tokenService: TokenService) {
@@ -147,6 +149,15 @@ export class DataService {
     console.log("Unselected Vehicles ="+this.unselectedVehicles);
     return this.unselectedVehicles;
   }
+  initializeTimeForDestination(){
+      this.timeForDestination = [0,0,0,0];
+      return this.timeForDestination;
+  }
+
+  initializeTimeTaken(){
+    this.timeTaken=0;
+    return this.timeTaken;
+  }
 
   retrieveSelectedPlanet(selectedPlanet: Planet){ //DEBUG HERE planetList not initialized
     let planetFound: Planet;
@@ -242,5 +253,24 @@ export class DataService {
     this.unselectedPlanets.length=0;
     this.unselectedPlanets.push(...this.planetList);
     console.log("New Unselected Vehicles "+this.unselectedVehicles);
+  }
+  computeTime(event){
+    if(this.selectedVehicles[event.destId].id == -1){
+      this.timeForDestination[event.destId] = 0;
+    } else {
+      this.timeForDestination[event.destId] = 
+      (this.selectedPlanets[event.destId].distance / this.selectedVehicles[event.destId].speed);
+    }
+  }
+  getTimeTaken(){
+    return this.timeTaken;
+  }
+  isReadyForExpedition(){
+    let validTime = true;
+    this.timeForDestination.forEach(time => {
+      this.timeTaken += time;
+      validTime = (time == 0) ? false : true;
+    });
+    return validTime;
   }
 }

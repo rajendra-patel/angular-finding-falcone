@@ -45,6 +45,8 @@ export class FindFalconComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.setNoOfDestinations(this.noOfDestinations);
+    this.timeForDestination = this.dataService.initializeTimeForDestination();
+    this.timeTaken = this.dataService.initializeTimeTaken();
     this.selectedVehicles = this.dataService.initializeSelectedVehicles();
     this.selectedPlanets = this.dataService.initializeSelectedPlanets();
     this.previousSelectedVehicle = new Vehicle();
@@ -94,6 +96,7 @@ export class FindFalconComponent implements OnInit {
   }
 
   onSelectVehicle(event: any) {
+    console.log("Previous Selected Vehicle "+event.previousSelectedVehicle);
     console.log(" Event Received at findfalcon ",event);
     this.dataService.assignSelectedVehicle(event.destId, event.vehicle);
     this.selectedVehiclesId[event.destId] = event.vehicle.id;
@@ -154,20 +157,11 @@ export class FindFalconComponent implements OnInit {
     }
   }
 
-  computeTime(event){
-    let validTime = true;
+  computeTime(event:any){
     this.timeTaken = 0;
-    if(this.selectedVehiclesId[event.destId] == -1){
-      this.timeForDestination[event.destId] = 0;
-    } else {
-    this.timeForDestination[event.destId] = 
-      (this.selectedPlanets[event.destId].distance / this.selectedVehicles[event.destId].speed);
-    }
-    this.timeForDestination.forEach(time => {
-      this.timeTaken += time;
-      validTime = (time == 0) ? false : true;
-    });
-    this.isReadyForExpedition = validTime;
+    this.dataService.computeTime(event);
+    this.isReadyForExpedition = this.dataService.isReadyForExpedition();
+    this.timeTaken = this.dataService.getTimeTaken();
   }
 
   getResult() {
