@@ -29,6 +29,7 @@ export class DataService {
   constructor(private planetService: PlanetService, private vehicleService: VehicleService, private tokenService: TokenService) {
     this.nullVehicle = new Vehicle();
     this.nullVehicle.setData(-1, "Select Vehicle", -1, -1, -1);
+    this.noOfDestinations.forEach(dest => this.nullVehicles.push(this.nullVehicle));
     this.requestData();
     this.result = {status: "", planet: "", totalTimeTaken: -1};
   }
@@ -106,6 +107,7 @@ export class DataService {
   }
 
   initializeSelectedPlanets(){
+    this.selectedPlanets.length=0;
     let planet = new Planet();
     planet.setData(-1, "Select Planet", -1);
     this.noOfDestinations.forEach(dest => this.selectedPlanets.push(planet));
@@ -114,7 +116,6 @@ export class DataService {
 
   initializeSelectedVehicles(){
     console.log(this.noOfDestinations.length);
-    this.noOfDestinations.forEach(dest => this.nullVehicles.push(this.nullVehicle));
     console.log(this.nullVehicles);
     this.selectedVehicles = this.nullVehicles.slice();
     return this.selectedVehicles;
@@ -139,8 +140,8 @@ export class DataService {
   }
 
   initializeUnselectedVehicles(){
-    //
-    console.log("********************************Initializing Unselected Vehicles***********************************")
+    console.log("********************************Initializing Unselected Vehicles***********************************");
+    this.unselectedVehicles.length=0;
     this.vehicleList.forEach(vehicle => {
       let uSVehicle = new Vehicle();
       uSVehicle.setVehicle(vehicle);
@@ -241,6 +242,8 @@ export class DataService {
     console.log("Vehicle List "+this.vehicleList);
     this.selectedPlanets.forEach(planet => planet.setData(-1, "Select Planet", -1));
     this.selectedVehicles.forEach(vehicle => vehicle.setVehicle(this.nullVehicle));
+    this.timeTaken = 0;
+    this.timeForDestination = [0,0,0,0];
 /*
     for(let i=0; i<this.vehicleList.length; i++){
       let pushedVehicle = new Vehicle();
