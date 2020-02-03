@@ -262,6 +262,7 @@ export class DataService {
       this.timeForDestination[event.destId] = 
       (this.selectedPlanets[event.destId].distance / this.selectedVehicles[event.destId].speed);
     }
+    console.log("Time Taken"+this.timeForDestination);
   }
   getTimeTaken(){
     return this.timeTaken;
