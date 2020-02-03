@@ -3,7 +3,7 @@
   /* background-image: url("https://cdn.wallpapersafari.com/62/33/5e0nIt.jpg"); */
 }
 .planetGroup {
-    left: 15%;
+    /* left: 15%; */
     /* text-shadow: 2px 2px 4px #000000; */
     /* float: left; */
     margin: 10px 20px 100px 20px;
@@ -31,7 +31,7 @@
     position: relative;
     color: #ffffff;
     display: inline-block;
-    margin-left: 330px;
+    /* margin-left: 330px; */
 }
 
 .allignCenter {

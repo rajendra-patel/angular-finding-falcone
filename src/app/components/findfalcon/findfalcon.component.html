@@ -10,8 +10,8 @@
   <div>
     <h4>Select the Planets where you want to send the army : </h4>
   </div>
-  <div style="display: block; width:100%">
-    <div style="display: inline-block">
+  <div style="display: block; width:100%; text-align:center;;">
+    <div style="display: inline-block;">
       <div class="planetGroup" *ngFor="let planetId of noOfDestinations">
         <app-planet [id] = "planetId" [unselectedPlanets] = "unselectedPlanets" (onSelectPlanet)="onSelectPlanet($event)"></app-planet>
       </div>
