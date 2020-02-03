@@ -158,7 +158,6 @@ export class FindFalconComponent implements OnInit {
   }
 
   computeTime(event:any){
-    this.timeTaken = 0;
     this.dataService.computeTime(event);
     this.isReadyForExpedition = this.dataService.isReadyForExpedition();
     this.timeTaken = this.dataService.getTimeTaken();

@@ -255,6 +255,7 @@ export class DataService {
     console.log("New Unselected Vehicles "+this.unselectedVehicles);
   }
   computeTime(event){
+    this.timeTaken = 0;
     if(this.selectedVehicles[event.destId].id == -1){
       this.timeForDestination[event.destId] = 0;
     } else {

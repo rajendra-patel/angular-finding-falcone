@@ -31,21 +31,28 @@
     </div>
   </div>
 
-
+  
   <div style="text-align: center; align-items: center; align-content: center;">
     <button class="button3" [disabled]="!isReadyForExpedition" (click)="getResult()">Send Army!</button>
   </div>
 
-  <div *ngIf="planetList.length!=0||vehicleList.length!=0" style="text-align: center;">
-    <div style="display: inline-block;" *ngFor="let planet of planetList">
-      <h5>Planet: {{planet.name}}</h5>
-      <h5>Distance to Planet: {{planet.distance}}</h5>
+
+
+  <div *ngIf="planetList.length!=0||vehicleList.length!=0" style="color:#ffffff; align-items:center;">
+    <div style="display: inline-block; color:#ffffff; text-align:center; align-items: center; align-content:center; padding: 5px 15px; left: 40%;">
+      <div style="display:block text-align: center; float:left; align-items: center; align-content:center; padding: 5px 25px;" *ngFor="let planet of planetList">
+        <h5>Planet: {{planet.name}}</h5>
+        <h5>Distance to Planet: {{planet.distance}}</h5>
+      </div>
     </div>
-    <div style="display: inline-block;" *ngFor="let vehicle of vehicleList">
-      <h5>Vehicle: {{vehicle.name}}</h5>
-      <h5>Available Units of Vehicles of this type {{vehicle.totalNumber}}</h5>
-      <h5>Cover Maximum Distance of {{vehicle.maxDistance}} Megamiles</h5>
-      <h5>Maximum Traveling Speed {{vehicle.speed} Megamiles/Hour}</h5>
+    <br>
+    <div style="display: inline-block">
+      <div style="display: block; color:#ffffff; float:left;text-align:center; align-items: center; align-content:center; padding: 5px 25px;" *ngFor="let vehicle of vehicleList">
+        <h5>Vehicle: {{vehicle.name}}</h5>
+        <h5>Available Units of Vehicles of this type {{vehicle.totalNumber}}</h5>
+        <h5>Can cover Maximum Distance of {{vehicle.maxDistance}} Megamiles</h5>
+        <h5>Maximum Traveling Speed {{vehicle.speed}} Megamiles/Hour}</h5>
+      </div>
     </div>
   </div>
 </div>
