@@ -204,4 +204,7 @@ export class FindFalconComponent implements OnInit {
     console.log("***********Vehicle Names " + vehicleNames);
     return vehicleNames;
   }
+  isTimeTakenValid(){
+    return this.dataService.getTimeTaken() !== 0;
+  }
 }

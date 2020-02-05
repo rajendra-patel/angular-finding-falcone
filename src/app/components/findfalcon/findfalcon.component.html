@@ -7,7 +7,7 @@
       only 4 of these planets. Your task is to help King Shan find Al Falcone.
   </p>
 
-<div style="display: flex; width:100%; ">
+<div style="display: flex; width:100%;align-items: center; ">
   <div style="display: block; width:90%; text-align:center;">
     <div>
       <h4>Select the Planets where you want to send the army : </h4>
@@ -26,8 +26,8 @@
       </div>
     </div>
   </div>
-  <div class="timeTaken" *ngIf="timeTaken!=0">
-    Time Taken : {{timeTaken}}
+  <div class="timeTaken" *ngIf="isTimeTakenValid()">
+    Total Time Taken : {{timeTaken}}
   </div>
 </div>
   
