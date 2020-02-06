@@ -1,7 +1,7 @@
 .header {
   color: rgb(36, 103, 161);
   width: 100%;
-  top: 5px;
+  top: 0px;
   background-color: #145474;
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@
   padding: 12px 12px;
   text-align: center;
 }
-.navigation-main h4 {
+.nav h4 {
     color: rgb(36, 103, 161);
     padding: 5px 10px;
     margin: 5px 10px;

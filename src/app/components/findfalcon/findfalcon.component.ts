@@ -78,31 +78,12 @@ export class FindFalconComponent implements OnInit {
     console.log("Final Evenet ", event);
     this.selectedPlanetsId[event.destId] = event.planet.id;
     this.selectedPlanets[event.destId] = event.planet;
-    console.log("selectedPlanetsId After Updating ", this.selectedPlanetsId);
+    console.log("selectedPlanets After Updating "+this.selectedPlanets);
   
     this.unselectedPlanets.length = 0;
-    this.planetList.forEach(sPlanet => {
-      let pushIt = false;
-      let planetFound = false;
-      this.selectedPlanets.forEach(selPlanet => {
-        if(selPlanet.id==-1){
-          return;
-        } else {
-          planetFound = (sPlanet.id == selPlanet.id);
-          console.log(selPlanet+" Found "+planetFound);
-          if(planetFound){
-            pushIt = false;
-            return;
-          }
-          pushIt = true;
-        }
-      });
-      if(pushIt){
-          this.unselectedPlanets.push(sPlanet);
-      }
-    });
-    console.log("updated unselectedPlanet", this.unselectedPlanets);
-    console.log("vehicle list onplanetselect ", this.unselectedVehicles);
+    this.unselectedPlanets = this.planetList.filter(sPlanet => !this.selectedPlanets.some(selPlanet=>selPlanet.id==sPlanet.id));
+    console.log("updated unselectedPlanets "+this.unselectedPlanets);
+    console.log("vehicle list onplanetselect "+this.unselectedVehicles);
     this.processSelectedVehicleValidity(event);
     this.processDisabledVehicles(event);
     this.computeTime(event);
