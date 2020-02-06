@@ -81,7 +81,7 @@ export class FindFalconComponent implements OnInit {
     console.log("selectedPlanets After Updating "+this.selectedPlanets);
   
     this.unselectedPlanets.length = 0;
-    this.unselectedPlanets = this.planetList.filter(sPlanet => !this.selectedPlanets.some(selPlanet=>selPlanet.id==sPlanet.id));
+    this.unselectedPlanets.push(...this.planetList.filter(sPlanet => !this.selectedPlanets.some(selPlanet=>selPlanet.id==sPlanet.id)));
     console.log("updated unselectedPlanets "+this.unselectedPlanets);
     console.log("vehicle list onplanetselect "+this.unselectedVehicles);
     this.processSelectedVehicleValidity(event);

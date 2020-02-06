@@ -31,7 +31,7 @@ export class DataService {
     this.nullVehicle.setData(-1, "Select Vehicle", -1, -1, -1);
     this.requestData();
     this.result = {status: "", planet: "", totalTimeTaken: -1};
-    console.log("DataService UnselectedVehicles"+this.unselectedVehicles);
+    console.log("DataService UnselectedVehicles "+this.unselectedVehicles);
   }
 
   setNoOfDestinations(noOfDestinations: number[]){
@@ -260,10 +260,14 @@ export class DataService {
       this.unselectedVehicles[i] = pushedVehicle; 
     }
 */
+    console.log("PlanetList "+this.planetList);
+    console.log("UnselectedPlanets before reset "+this.unselectedPlanets);
+
     this.vehicleList.forEach(vehicle => this.unselectedVehicles.find(sVehicle => sVehicle.id == vehicle.id).setVehicle(vehicle));
     this.unselectedPlanets.length=0;
-    this.unselectedPlanets.push(...this.planetList);
+    this.unselectedPlanets.push(...this.planetList.slice());
     console.log("New Unselected Vehicles "+this.unselectedVehicles);
+    console.log("UnselectedPlanets after reset "+this.unselectedPlanets);
   }
   computeTime(event){
     this.timeTaken = 0;
