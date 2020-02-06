@@ -6,12 +6,13 @@
       army to
       only 4 of these planets. Your task is to help King Shan find Al Falcone.
   </p>
-
+  <div>
+    <h4>Select the Planets where you want to send the army : </h4>
+  </div>
 <div style="display: flex; width:100%;align-items: center; ">
+
   <div style="display: block; width:90%; text-align:center;">
-    <div>
-      <h4>Select the Planets where you want to send the army : </h4>
-    </div>
+
     <div style="display: inline-block;">
       <div class="planetGroup" *ngFor="let planetId of noOfDestinations">
         <app-planet [id] = "planetId" [unselectedPlanets] = "unselectedPlanets" (onSelectPlanet)="onSelectPlanet($event)"></app-planet>
