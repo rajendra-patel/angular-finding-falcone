@@ -63,7 +63,7 @@ p {
   color: #ffffff;
   text-indent: 4%;
   text-align: justify;
-  padding: 5px 175px;
+  /* padding: 5px 175px; */
   font-family: "Ubuntu Mono";
   line-height: 130%; font-size: 120%;
 }

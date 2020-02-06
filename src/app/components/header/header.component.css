@@ -24,7 +24,8 @@
   align-items: center;
   flex-direction: row;
   	/* align-items: center; */
-	justify-content: space-around;
+	justify-content: space-between;
+  padding: 0 1rem;
 	flex-wrap: wrap;
 }
 .navigation-main a {
