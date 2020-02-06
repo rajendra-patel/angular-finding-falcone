@@ -81,11 +81,21 @@ export class FindFalconComponent implements OnInit {
     console.log("selectedPlanetsId After Updating ", this.selectedPlanetsId);
   
     this.unselectedPlanets.length = 0;
-    let instArray = this.planetList
-      .filter(
-        planet =>
-          planet.id !== this.selectedPlanetsId.find(id => id == planet.id)
-      );
+    let instArray = this.selectedPlanets.forEach(selPlanet => {
+      let pushIt = false;
+      let planetFound = false;
+      if(selPlanet.id==-1){
+        return;
+      } else {
+        this.planetList.forEach(sPlanet => {
+          planetFound = sPlanet.id == selPlanet.id;
+          if(planetFound){
+            this.unselectedPlanets.push(selPlanet);
+            return;
+          }
+        });
+      }
+    });
       // .slice();
     this.unselectedPlanets.push(...instArray);
     console.log("updated unselectedPlanet", this.unselectedPlanets);
