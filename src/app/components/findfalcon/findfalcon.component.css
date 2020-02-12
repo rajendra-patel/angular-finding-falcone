@@ -6,7 +6,7 @@
     /* left: 15%; */
     /* text-shadow: 2px 2px 4px #000000; */
     /* float: left; */
-    margin: 10px 20px 100px 20px;
+    margin: 10px 20px 20px 20px;
     padding: 15px 43px;
     position: relative;
     display: inline-block;
@@ -15,7 +15,7 @@
 .vehicleSelect {
   text-align: left;
     display: inline-block;
-    height: 125px;
+    height: 45px;
     width: 200px;
     /* left: 15%; */
     /* float: left; */
@@ -58,4 +58,34 @@ h4 {
 p{
   width: 80%;
   margin:auto;
+}
+table {
+  background: rgba(7, 41, 58, 0.102);
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
+}
+th {
+      text-shadow: 2px 2px 4px #000000;
+    color :rgb(36, 103, 161);
+  border-bottom: 1px solid #364043;
+  /* color: #E2B842; */
+  font-size: 0.85em;
+  font-weight: 400;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+.disabled td {
+  color: #4F5F64;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #014055;
 }

@@ -6,12 +6,12 @@
       army to
       only 4 of these planets. Your task is to help King Shan find Al Falcone.
   </p>
+
+<div style="display: flex; width:100%;align-items: center; ">
+  <div style="display: block; width:90%; text-align:center;">
   <div>
     <h4>Select the Planets where you want to send the army : </h4>
   </div>
-<div style="display: flex; width:100%;align-items: center; ">
-
-  <div style="display: block; width:90%; text-align:center;">
 
     <div style="display: inline-block;">
       <div class="planetGroup" *ngFor="let planetId of noOfDestinations">
@@ -32,7 +32,7 @@
   </div>
 </div>
   
-  <div style="text-align: center; align-items: center; align-content: center;">
+  <div style="text-align: center; align-items: center; align-content: center; margin: 20px 20px;">
     <button class="button3" [disabled]="!isReadyForExpedition" (click)="getResult()">Send Army!</button>
   </div>
 
@@ -40,18 +40,41 @@
 
   <div *ngIf="planetList.length!=0||vehicleList.length!=0" style="text-align: center; width: 100%;">
     <div>
-      <div style="display:inline-block; text-align: center;  padding: 5px 25px; color:#ffffff;" *ngFor="let planet of planetList">
-        <h5>Planet: {{planet.name}}</h5>
-        <h5>Distance to Planet: {{planet.distance}}</h5>
-      </div>
+      <!-- <div style="display:inline-block; text-align: center;  padding: 5px 25px; color:#ffffff;" *ngFor="let planet of planetList"> -->
+        <table style="color:#ffffff;">
+          <tr>
+            <th>Planet</th>
+            <td *ngFor="let planet of planetList">{{planet.name}}</td>
+          </tr>
+          <tr>
+            <th>Distance to Planet</th>
+            <td *ngFor="let planet of planetList">{{planet.distance}}</td>
+          </tr>
+        </table>
+      <!-- </div> -->
     </div>
+    <br>
     <div>
-      <div style="display: inline-block; color:#ffffff; text-align:center; padding: 5px 25px;" *ngFor="let vehicle of vehicleList">
-        <h5>Vehicle: {{vehicle.name}}</h5>
-        <h5>Available Units of Vehicles of this type {{vehicle.totalNumber}}</h5>
-        <h5>Can cover Maximum Distance of {{vehicle.maxDistance}} Megamiles</h5>
-        <h5>Maximum Traveling Speed {{vehicle.speed}} Megamiles/Hour}</h5>
-      </div>
+      <!-- <div style="display: inline-block; color:#ffffff; text-align:center; padding: 5px 25px;" *ngFor="let vehicle of vehicleList"> -->
+        <table style="color:#ffffff; text-align: left;">
+          <tr>
+            <th>Vehicle</th>
+            <td *ngFor="let vehicle of vehicleList">{{vehicle.name}}</td>
+          </tr>
+          <tr>
+            <th>Available Units of Vehicles of this type</th>
+            <td *ngFor="let vehicle of vehicleList">{{vehicle.totalNumber}}</td>
+          </tr>
+          <tr>
+            <th>Can cover Maximum Distance of</th>
+            <td *ngFor="let vehicle of vehicleList">{{vehicle.maxDistance}} Megamiles</td>
+          </tr>
+          <tr>
+            <th>Maximum Traveling Speed</th>
+            <td *ngFor="let vehicle of vehicleList">{{vehicle.speed}} Megamiles/Hour</td>
+          </tr>
+        </table>
+      <!-- </div> -->
     </div>
   </div>
 </div>
