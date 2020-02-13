@@ -15,6 +15,9 @@ import { FindFalconService } from "../../services/findfalcon.service";
   styleUrls: ["./findfalcon.component.css"]
 })
 export class FindFalconComponent implements OnInit {
+  private vehicleImage = new Array<string>(4);
+  private planetImage = new Array<string>(6);
+
   private noOfDestinations = [0, 1, 2, 3]; //new Array<number>(4);
   private planetList: Planet[] = [];
   private vehicleList: Vehicle[] = [];
@@ -44,6 +47,18 @@ export class FindFalconComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.vehicleImage[0]= "https://drive.google.com/uc?id=1p2H4ZNStNsJKWjVwxbT1rBZ3TTkmn0Ee";
+    this.vehicleImage[1]="https://drive.google.com/uc?id=1GeKRE7tzcutzuOW3p4NY4MmK6FawP-V7";
+    this.vehicleImage[2]="https://drive.google.com/uc?id=18hRMjIZ6WSjQO1r4Ux4h-1V7jWgr8JY0";
+    this.vehicleImage[3]="https://drive.google.com/uc?id=1XeZbiK8cZ1Ik6X96D26_z8KS61JWE7Eq";
+
+    this.planetImage[0]="https://drive.google.com/uc?id=16xfHeFlQH0N9J_fWHk3J9W9uXK1p7EN-";
+    this.planetImage[1]="https://drive.google.com/uc?id=1beIkfTuLtJumEUzBN-q3NS2AZYN9PAvY";
+    this.planetImage[2]="https://drive.google.com/uc?id=1V0M4Iy8CODcWyFLsvExiqQowhi5TO8yY";
+    this.planetImage[3]="https://drive.google.com/uc?id=1WZzUHxSzY1rGeLV4uIq2aMdJ8ScreR3g";
+    this.planetImage[4]="https://drive.google.com/uc?id=1mof1ZqUieuXqka6XLKSsJcCSL714AdHu";
+    this.planetImage[5]="https://drive.google.com/uc?id=1ld5BpmYq2QdUF4EFbIyqy7HykzXZRwzo";
+
     this.dataService.setNoOfDestinations(this.noOfDestinations);
     this.timeForDestination = this.dataService.initializeTimeForDestination();
     this.timeTaken = this.dataService.initializeTimeTaken();
