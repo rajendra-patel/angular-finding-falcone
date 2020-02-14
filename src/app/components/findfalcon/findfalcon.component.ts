@@ -52,12 +52,12 @@ export class FindFalconComponent implements OnInit {
     this.vehicleImage[2]="https://drive.google.com/uc?id=18hRMjIZ6WSjQO1r4Ux4h-1V7jWgr8JY0";
     this.vehicleImage[3]="https://drive.google.com/uc?id=1XeZbiK8cZ1Ik6X96D26_z8KS61JWE7Eq";
 
-    this.planetImage[0]="https://drive.google.com/uc?id=16xfHeFlQH0N9J_fWHk3J9W9uXK1p7EN-";
-    this.planetImage[1]="https://drive.google.com/uc?id=1beIkfTuLtJumEUzBN-q3NS2AZYN9PAvY";
-    this.planetImage[2]="https://drive.google.com/uc?id=1V0M4Iy8CODcWyFLsvExiqQowhi5TO8yY";
-    this.planetImage[3]="https://drive.google.com/uc?id=1WZzUHxSzY1rGeLV4uIq2aMdJ8ScreR3g";
-    this.planetImage[4]="https://drive.google.com/uc?id=1mof1ZqUieuXqka6XLKSsJcCSL714AdHu";
-    this.planetImage[5]="https://drive.google.com/uc?id=1ld5BpmYq2QdUF4EFbIyqy7HykzXZRwzo";
+    this.planetImage[0]="https://drive.google.com/uc?id=1XDTO_uBtqumjjvlqKyZgnw0m4vdtsAJx";
+    this.planetImage[1]="https://drive.google.com/uc?id=1_v8LcwWnVQZW3wZ7frwc2Dh8Rf9CgFw-";
+    this.planetImage[2]="https://drive.google.com/uc?id=1VdPijp0G5Pyh2XIqjnIFVufxOQe0H21f";
+    this.planetImage[3]="https://drive.google.com/uc?id=1JUGnnF9GuVSBT71gHftdtfbPYRtTOY3X";
+    this.planetImage[4]="https://drive.google.com/uc?id=14eoclxEmxjOSgZv0vKQ1yx36YCYvmw8D";
+    this.planetImage[5]="https://drive.google.com/uc?id=1Y7IFbswgN0fh5Bi-y8TfihabTYc04Rw6";
 
     this.dataService.setNoOfDestinations(this.noOfDestinations);
     this.timeForDestination = this.dataService.initializeTimeForDestination();

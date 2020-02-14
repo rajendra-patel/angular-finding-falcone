@@ -7,6 +7,6 @@
 
     <div *ngIf="result.status == 'false'">
         <h5>The Army Failed to find Queen Al Falcone in the selected planets</h5>
-        <h5>Please Retry</h5>
+        <button (click)="retry()" class="button3">Retry</button>
     </div>
 </div>

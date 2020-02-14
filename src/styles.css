@@ -42,11 +42,11 @@ body {
   border-color:#3769b1;
 }
 
-button3:disabled{
-  color:rgb(0, 0, 0);
-  border-color:rgb(0, 0, 0);
+.button3:disabled{
+  color:rgb(71, 71, 71);
+  border-color:rgb(255, 255, 255);
 }
-button3:active{
+.button3:active{
   color:rgb(41, 155, 255);
   border-color:rgb(46, 158, 255);
 }
